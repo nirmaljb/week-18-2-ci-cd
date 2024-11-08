@@ -3,13 +3,14 @@
     "version": "0.0.0",
     "dependencies": {
         "@prisma/client": "^5.11.0",
+        "@types/bcrypt": "^5.0.2",
         "bcrypt": "^5.1.1"
     },
     "devDependencies": {
         "prisma": "5.11.0"
     },
     "exports": {
-        "./client": "./index.ts"
+        "./client": "./src/index.ts"
     },
     "prisma": {
         "seed": "ts-node prisma/seed.ts"
