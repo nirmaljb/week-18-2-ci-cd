@@ -1,0 +1,27 @@
+name: Build Succeeds on PR
+
+on:
+    pull_request:
+        branches:
+            - master
+
+jobs:
+    build:
+        name: Build the project
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Use node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: '20'
+                
+            - name: Install dependencies
+              run: npm install
+            
+            - name: Generate Prima Client
+              run: npm run db:generate
+            
+            - name: Run Build
+              run: npm run build
+              
