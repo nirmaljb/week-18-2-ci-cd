@@ -28,3 +28,15 @@ jobs:
 
     - name: Verify Pushed Image
       run: docker pull ${{ secrets.DOCKER_USERNAME }}/turbo-repo-cd:latest  # Replace with your Docker Hub username and repository
+    
+    - name: Deploy it to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          sudo docker pull kaizenjb/turbo-repo-cd:latest
+          sudo docker stop turbo-boy || true
+          sudo docker rm turbo-boy || true
+          sudo docker run -d --name turbo-boy -p 3005:3000 kaizenjb/turbo-repo-cd:latest
