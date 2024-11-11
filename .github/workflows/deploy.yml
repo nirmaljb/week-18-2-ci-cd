@@ -29,7 +29,7 @@ jobs:
     - name: Verify Pushed Image
       run: docker pull ${{ secrets.DOCKER_USERNAME }}/turbo-repo-cd:latest  # Replace with your Docker Hub username and repository
     
-    - name: Deploy it to EC2
+    - name: Deploy it to EC2 AWS
       uses: appleboy/ssh-action@v1.1.0
       with:
         host: ${{ secrets.SSH_HOST }}
